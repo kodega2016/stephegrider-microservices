@@ -16,7 +16,7 @@ spec:
       containers:
         - name: moderation
           image: kodega2016/blog-moderation
-          imagePullPolicy: IfNotPresent
+          imagePullPolicy: Always
           env:
             - name: EVENT_BUS_ADDRESS
               value: event-bus-clusterip-service

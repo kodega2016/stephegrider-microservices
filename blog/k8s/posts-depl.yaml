@@ -16,8 +16,8 @@ spec:
     spec:
       containers:
         - name: posts
-          image: kodega2016/blog-posts:v2
-          imagePullPolicy: IfNotPresent
+          image: kodega2016/blog-posts
+          imagePullPolicy: Always
           ports:
             - containerPort: 4000
               name: posts

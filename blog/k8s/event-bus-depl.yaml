@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: event-bus
-          image: kodega2016/blog-event-bus:v2
+          image: kodega2016/blog-event-bus
           imagePullPolicy: Always
           ports:
             - containerPort: 4005
