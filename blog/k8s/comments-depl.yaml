@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: comments-deployment
+  labels:
+    app: comments
+spec:
+  selector:
+    matchLabels:
+      app: comments
+  replicas: 1
+  strategy:
+  template:
+    metadata:
+      labels:
+        app: comments
+    spec:
+      containers:
+        - name: comments
+          image: kodega2016/blog-comments
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 4001
+              name: comments
+          env:
+            - name: EVENT_BUS_ADDRESS
+              value: event-bus-clusterip-service

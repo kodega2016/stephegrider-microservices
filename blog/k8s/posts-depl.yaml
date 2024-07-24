@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: posts-deployment
+  labels:
+    app: posts
+spec:
+  selector:
+    matchLabels:
+      app: posts
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: posts
+    spec:
+      containers:
+        - name: posts
+          image: kodega2016/blog-posts:v2
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 4000
+              name: posts
+          env:
+            - name: EVENT_BUS_ADDRESS
+              value: "event-bus-clusterip-service"

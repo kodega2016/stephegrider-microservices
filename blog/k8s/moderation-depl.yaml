@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: moderation-deployment
+  labels:
+    app: moderation
+spec:
+  selector:
+    matchLabels:
+      app: moderation
+  template:
+    metadata:
+      labels:
+        app: moderation
+    spec:
+      containers:
+        - name: moderation
+          image: kodega2016/blog-moderation
+          imagePullPolicy: IfNotPresent
+          env:
+            - name: EVENT_BUS_ADDRESS
+              value: event-bus-clusterip-service
+          ports:
+            - containerPort: 4003
+              name: moderation
