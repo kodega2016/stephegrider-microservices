@@ -1,0 +1,20 @@
+apiVersion: skaffold/v4beta11
+kind: Config
+metadata:
+  name: ticketing
+build:
+  local:
+    push: true
+  artifacts:
+    - image: kodega2016/ticketing-auth
+      context: auth
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: "src/*.ts"
+            dest: "."
+manifests:
+  rawYaml:
+    - infra/k8s/auth-clusterip-service.yaml
+    - infra/k8s/auth-deployment.yaml
